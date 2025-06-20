@@ -24,3 +24,8 @@
 |:--:|:--:|:--:|
 |May 30, 2025|Private|Reported to tomcat security team|
 |Jun 16, 2025|Public|Published|
+
+## [CVE-2025-?](https://github.com/gregk4sec/TBD) - Bugzilla - TBD
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|Jun 20, 2025|Private|Reported to mozilla-bugzilla security team|
