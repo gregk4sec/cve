@@ -29,3 +29,11 @@
 |Date|Status|Comment|
 |:--:|:--:|:--:|
 |Jun 20, 2025|Private|Reported to mozilla-bugzilla security team|
+
+
+## [CVE-2025-44160](https://github.com/gregk4sec/TBD) - WebDAV DoS
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|Feb, 2025|Private|Reported to Vendor Jira|
+|Mar 13, 2025|Private|Reported to CVE.org|
+|Jun 26, 2025|Private|Confirmed with CVE Number|
