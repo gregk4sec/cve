@@ -5,7 +5,7 @@
 |Jan 13, 2025|Private|Reported to tomcat security team|
 |Mar 10, 2025|Public|Published|
 
-## [CVE-2025-PoC-Tomcat-DoS-0314](https://github.com/gregk4sec/CVE-2025-PoC-Tomcat-DoS-20250314)
+## [CVE-2025-PoC-Tomcat-DoS-0314](https://github.com/gregk4sec/CVE-2025-PoC-Tomcat-DoS-0314)
 
 ## [CVE-2025-31651](https://github.com/gregk4sec/CVE-2025-31651) - Tomcat - Rewrite rule bypass
 |Date|Status|Comment|
