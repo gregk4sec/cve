@@ -42,3 +42,10 @@
 |Date|Status|Comment|
 |:--:|:--:|:--:|
 |July 4, 2025|Private|Reported to Nginx Github Security|
+
+## [CVE-2025-55668](https://github.com/gregk4sec/CVE-2025-55668) - Tomcat - Session fixation via rewrite valve
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|May 30, 2025|Private|Reported to tomcat security team|
+|Aug 13, 2025|Public|Published|
+
