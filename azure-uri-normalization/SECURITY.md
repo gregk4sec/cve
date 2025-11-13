@@ -49,6 +49,6 @@ If another researcher submits a similar exploit on Azure Load Balancer or WAF af
 
 ## 🧾 Contact
 
-Researcher: Greg K with k4security Lab, gregk4sec@hotmail.com
+Researcher: Greg K with k4security Lab
 MSRC Cases: 102586 (Web App), 102650 (Container App), others pending  
-Contact: [GitHub profile or email]
+Contact: [gregk4sec-github](https://github.com/gregk4sec) gregk4sec@hotmail.com  
