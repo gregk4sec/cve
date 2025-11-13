@@ -1,10 +1,10 @@
-# 🔓 Advisory: Azure URI Normalization Weakness Enables Cross-Service Path Traversal and Trust Injection
+# 🔓 Advisory: URI Normalization Weakness Enables Cross-Service Path Traversal and Trust Injection
 
 ## 📅 Disclosure Timeline
 
 - **2025-07-05**: Initial report to MSRC via Windows Insider Preview / IIS  
 - **2025-07 to 2025-10**: Additional submissions to Web App, Container App, APIM, WAF, FrontDoor, Load Balancer  
-- **Web App**: Accepted and rewarded $10K (initially Critical, later downgraded)  
+- **Web App**: Accepted and rewarded (initially Critical, later downgraded)  
 - **Container App**: Marked as duplicate  
 - **Other surfaces**: Declined with varied reasoning (“designed behavior”, “not a security component”, “customer misconfiguration”)  
 - **2025-11**: Oracle OHS accepted similar report, CVE expected in next CPU  
@@ -49,6 +49,6 @@ If another researcher submits a similar exploit on Azure Load Balancer or WAF af
 
 ## 🧾 Contact
 
-Researcher: K  
+Researcher: Greg K with k4security Lab, gregk4sec@hotmail.com
 MSRC Cases: 102586 (Web App), 102650 (Container App), others pending  
 Contact: [GitHub profile or email]
