@@ -67,12 +67,13 @@ Authorization: Bearer ${ACCESS_TOKEN}
 |:--:|:--:|:--:|
 |July 4, 2025|Private|Reported to Nginx Github Security|
 
-## 0x07 [CVE-2025-44160](https://github.com/gregk4sec/TBD) - WebDAV DoS
+## 0x07 [CVE-2025-44160](./CVE-2025-44160-CLOSED.md) - WebDAVSystem Potential DoS
 |Date|Status|Comment|
 |:--:|:--:|:--:|
 |Feb, 2025|Private|Reported to Vendor Jira|
 |Mar 13, 2025|Private|Reported to CVE.org|
 |Jun 26, 2025|Private|Confirmed with CVE Number|
+|Nov 14, 2025|Public|Noticed the CVE was closed, disclose it immediately|
 
 ## 0x06 [CVE-2025-?](https://github.com/gregk4sec/TBD) - Bugzilla - TBD
 |Date|Status|Comment|
