@@ -67,7 +67,7 @@ Authorization: Bearer ${ACCESS_TOKEN}
 |:--:|:--:|:--:|
 |July 4, 2025|Private|Reported to Nginx Github Security|
 
-## 0x07 [CVE-2025-44160](./CVE-2025-44160-CLOSED.md) - WebDAVSystem Potential DoS
+## 0x07 [CVE-2025-44160-CLOSED](./CVE-2025-44160-CLOSED.md) - WebDAVSystem Potential DoS
 |Date|Status|Comment|
 |:--:|:--:|:--:|
 |Feb, 2025|Private|Reported to Vendor Jira|
