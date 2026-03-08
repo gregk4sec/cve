@@ -12,7 +12,7 @@ Specializing in Middleware, Cloud & Infra, and high‑severity server‑side fla
 
 ---
 
-# 📚 Table of Contents / 目录
+# 📚 Table of Contents
 
 - [Introduction](#introduction)
 - [Repository Structure](#repository-structure)

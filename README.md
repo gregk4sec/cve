@@ -1,87 +1,123 @@
-![Type: CVE](https://img.shields.io/badge/Type-CVE-critical?style=for-the-badge&logo=cve)
-![Discoverer: gregk4sec](https://img.shields.io/badge/Discoverer-gregk4sec-black?style=for-the-badge&logo=github)
+# gregk4sec CVE Archive
+
+![Original Research](https://img.shields.io/badge/Research-Original%20Discovery-blueviolet?style=for-the-badge&logo=github)
+![Verified Security Researcher](https://img.shields.io/badge/Verified-Security%20Researcher-2ea44f?style=for-the-badge&logo=shield)
+![CVE Contributor](https://img.shields.io/badge/CVE-Contributor-critical?style=for-the-badge&logo=cve)
+![Security Research Archive](https://img.shields.io/badge/Security-Research%20Archive-0A66C2?style=for-the-badge&logo=apache)
 
 
-
-# CVE-YYYY-XXXX — <Vulnerability Title>
-
-<!--
-![Status: Public](https://img.shields.io/badge/Status-Public-brightgreen?style=for-the-badge)
-![Status: Private](https://img.shields.io/badge/Status-Private-lightgrey?style=for-the-badge)
-![Status: Under Review](https://img.shields.io/badge/Status-Public-lightgrey?style=for-the-badge)
-![Status: Fixed](https://img.shields.io/badge/Status-Private-lightgrey?style=for-the-badge)
--->
-
-![Type: CVE](https://img.shields.io/badge/Type-CVE-critical?style=for-the-badge&logo=cve) 
-![Status: Private](https://img.shields.io/badge/Status-Private-lightgrey?style=for-the-badge)
-![Disclosure: Pending](https://img.shields.io/badge/Disclosure-Pending-yellow?style=for-the-badge)
-![Research: Original](https://img.shields.io/badge/Research-Original-blueviolet?style=for-the-badge)
-
-**Discoverer:** gregk4sec (https://github.com/gregk4sec/cve)  
-**Discovery Date:** YYYY-MM-DD  
-**Affected Vendor:** <Vendor>  
-**Affected Product:** <Product + Version>  
-**Severity:** Critical / High  
-**CWE:** CWE-XXX  
-**Status:** Under Review / Fixed / Public / Private  
+**Security Researcher Since 2025 & Principal Architect.**  
+Author of **CVE‑2026‑21962** (Oracle OHS, CVSS 10.0) and **CVE‑2025‑24813** (Apache Tomcat, CVSS 9.8).  
+Specializing in Middleware, Cloud & Infra, and high‑severity server‑side flaws.
 
 ---
 
-## Summary
+# 📚 Table of Contents
 
-Provide a concise 3–5 sentence summary describing the vulnerability, its impact, affected components, and trigger conditions.
-
----
-
-## Technical Analysis
-
-See: [`analysis.md`](analysis.md)
-
----
-
-## Reproduction Steps
-
-1. Environment setup  
-2. Trigger conditions  
-3. Expected vs actual behavior  
-4. Screenshots (optional)
+- [Introduction](#introduction)
+- [Repository Structure](#repository-structure)
+- [Research Focus](#research-focus)
+- [Published CVEs](#published-cves)
+- [Attribution](#attribution)
+- [How to Cite](#how-to-cite)
+- [Disclaimer](#disclaimer)
 
 ---
 
-## Proof of Concept (PoC)
+# Introduction
 
-PoC files are located in:
+This repository contains **original security vulnerabilities (CVEs) discovered by gregk4sec with k4security Lab**.  
+It serves as the **official archive** for:
+
+- Technical analysis  
+- Reproduction steps & partial PoCs  
+- Vendor communication & disclosure timeline  
+- Impact assessment & security recommendations  
+
+---
+
+# Repository Structure
 
 ```
-./poc/
+/CVE-YYYY-XXXX/
+    README.md           # Vulnerability description
+    analysis.md         # Technical analysis
+    timeline.md         # Disclosure timeline
+    poc/                # Partial PoCs
+    vendor-response/    # Vendor communication
+    screenshots/        # Reproduction evidence
 ```
 
-Note: Some PoC content may be redacted or published later depending on disclosure requirements.
+---
+
+# Research Focus
+
+**English**
+
+- Web & application security  
+- Protocol implementation flaws  
+- Authentication & authorization bypass  
+- Memory safety issues (C/C++)  
+- Cloud platform & infrastructure security  
 
 ---
 
-## Disclosure Timeline
+# Published CVEs
 
-See: [`timeline.md`](timeline.md)
-
----
-
-## Vendor Response
-
-See: `./vendor-response/`
+- CVE-2026-21962
+- CVE-2025-24813
 
 ---
 
-## References
+# Attribution
 
-- CVE Entry: <link>  
-- Vendor Advisory: <link>  
-- Security Bulletin: <link>  
-- Related Research: <link>
+**English**  
+All vulnerabilities in this repository are **original research** by gregk4sec.  
+Attribution is required when referencing this work.
+
+Official repository:  
+https://github.com/gregk4sec/cve
 
 ---
 
-## Attribution
+# How to Cite
 
-This vulnerability is an **original discovery by gregk4sec (https://github.com/gregk4sec/cve)**.  
-Repository: https://github.com/gregk4sec/cve
+## English Citation Format
+
+```
+gregk4sec with k4security Lab. gregk4sec Original Vulnerability Research Archive (CVE Archive).
+GitHub repository: https://github.com/gregk4sec/cve
+```
+
+## 中文引用格式
+
+```
+gregk4sec with k4security Lab. 《gregk4sec 原创漏洞研究档案（CVE Archive）》.
+GitHub 仓库：https://github.com/gregk4sec/cve
+```
+
+## APA Format
+
+```
+gregk4sec with k4security Lab. gregk4sec CVE Archive: Original Vulnerability Research. GitHub.
+https://github.com/gregk4sec/cve
+```
+
+## BibTeX
+
+```bibtex
+@misc{gregk_cve_archive,
+  author       = {gregk4sec with k4security Lab},
+  title        = {gregk4sec CVE Archive: Original Vulnerability Research},
+  year         = {2026},
+  howpublished = {\url{https://github.com/gregk4sec/cve}},
+  note         = {Original security vulnerability discoveries and analyses}
+}
+```
+
+---
+
+# Disclaimer
+
+This repository is intended for security research and educational purposes only.  
+Unauthorized exploitation of the information provided is strictly prohibited.

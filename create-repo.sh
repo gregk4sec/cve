@@ -31,13 +31,13 @@ REPO_NAME=$(echo "$TYPE-$ID" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 
 echo "Creating repository: $REPO_NAME"
 mkdir "../$REPO_NAME"
-cd "..$REPO_NAME"
+cd "../$REPO_NAME"
 
 # Copy template
 if [ "$TYPE" = "cve" ]; then
     cp -R ../cve/templates/cve-template/* .
 else
-    cp -R ../cvetemplates/security-finding-template/* .
+    cp -R ../cve/templates/security-finding-template/* .
 fi
 
 # Insert metadata.json
@@ -63,13 +63,13 @@ BADGES=""
 if [ "$TYPE" = "cve" ]; then
 BADGES=$(cat <<'EOF'
 ![Type: CVE](https://img.shields.io/badge/Type-CVE-critical?style=for-the-badge&logo=cve)
-![Discoverer: gregk4sec](https://img.shields.io/badge/Discoverer-gregk4sec-black?style=for-the-badge&logo=github)
+![Discoverer: gregk4sec](https://img.shields.io/badge/Discoverer-gregk4sec-blue?style=for-the-badge&logo=github)
 EOF
 )
 else
 BADGES=$(cat <<'EOF'
 ![Type: Security Finding](https://img.shields.io/badge/Type-Security%20Finding-blue?style=for-the-badge)
-![Discoverer: gregk4sec](https://img.shields.io/badge/Discoverer-gregk4sec-black?style=for-the-badge&logo=github)
+![Discoverer: gregk4sec](https://img.shields.io/badge/Discoverer-gregk4sec-blue?style=for-the-badge&logo=github)
 EOF
 )
 fi
@@ -80,6 +80,8 @@ echo "$BADGES" | cat - README.md > temp && mv temp README.md
 # Initialize git
 git init
 git add .
+git config user.name "gregk4sec"
+git config user.email ""
 git commit -m "Initial commit for $ID"
 
 # Create GitHub repo
