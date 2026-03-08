@@ -32,7 +32,7 @@ jobs:
           mkdir repos
           while read repo; do
             git clone "$repo" "repos/$(basename $repo)" || true
-          done < repo-list.txt
+          done < .github/workflows/repo-list.txt
 
       - name: Generate summary.md
         run: |
