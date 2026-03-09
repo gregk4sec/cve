@@ -7,7 +7,9 @@
 
 
 **Security Researcher Since 2025 & Principal Architect.**  
-Author of **CVE‑2026‑21962** (Oracle OHS, CVSS 10.0) and **CVE‑2025‑24813** (Apache Tomcat, CVSS 9.8).  
+
+Author of **CVE‑2026‑21962** (Oracle OHS, CVSS 10.0), **CVE-2025-31651** (Apache Tomcat, CVSS 9.8) and **CVE‑2025‑24813** (Apache Tomcat, CVSS 9.8).  
+
 Specializing in Middleware, Cloud & Infra, and high‑severity server‑side flaws.
 
 ---
@@ -62,10 +64,12 @@ It serves as the **official archive** for:
 
 ---
 
-# Published CVEs
+# CVE Archive
 
-- CVE-2026-21962
-- CVE-2025-24813
+This repository contains all CVE writeups.
+
+<!-- SUMMARY-START -->
+<!-- SUMMARY-END -->
 
 ---
 

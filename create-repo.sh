@@ -36,15 +36,11 @@ cd "../$REPO_NAME"
 # Copy template
 if [ "$TYPE" = "cve" ]; then
     cp -R ../cve/templates/cve-template/* .
-else
-    cp -R ../cve/templates/security-finding-template/* .
-fi
-
 # Insert metadata.json
 cat <<EOF > metadata.json
 {
     "type": "$TYPE",
-    "id": "$ID",
+    "id": "CVE-$ID",
     "title": "$TITLE",
     "vendor": "",
     "product": "",
@@ -56,6 +52,28 @@ cat <<EOF > metadata.json
     "repository": "https://github.com/gregk4sec/$REPO_NAME"
 }
 EOF
+else
+    cp -R ../cve/templates/security-finding-template/* .
+# Insert metadata.json
+cat <<EOF > metadata.json
+{
+    "type": "$TYPE",
+    "case_id": "$ID",
+    "year": 
+    "title": "$TITLE",
+    "vendor": "",
+    "product": "",
+    "severity": "",
+    "status": "Private",
+    "discoverer": "gregk4sec (https://github.com/gregk4sec/cve)",
+    "discovery_date": "",
+    "public_date": null,
+    "repository": "https://github.com/gregk4sec/$REPO_NAME"
+}
+EOF
+fi
+
+
 
 # Insert badges into README.md
 BADGES=""

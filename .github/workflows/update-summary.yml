@@ -8,6 +8,7 @@ on:
     paths:
       - '**/metadata.json'
       - '.github/workflows/update-summary.yml'
+      - 'README_SOURCE.md'
 
   schedule:
     - cron: "0 3 * * *"   # optional: rebuild daily at 03:00 UTC
@@ -27,27 +28,42 @@ jobs:
       - name: Install jq
         run: sudo apt-get install -y jq
 
-      - name: Clone all linked repos
+      - name: Fetch metadata.json from each repo (private supported)
         shell: bash
         run: |
-          echo "Listing current directory:$(pwd)"
-          ls -l .
+          mkdir -p ../summary-metadata
 
-          mkdir ../repos
-          while read repo; do
-            echo "Cloning $repo into ../repos/$(basename $repo)"
-            git clone "$repo" "../repos/$(basename $repo)" || true
+          index=1
+
+          while IFS= read -r repo; do
+            repo_name=$(basename "$repo")
+            owner=$(echo "$repo" | cut -d'/' -f4)
+
+            printf -v prefix "%04d" "$index"
+            output="metadata/${prefix}-${repo_name}.json"
+
+            echo "[$prefix] Fetching metadata.json from $owner/$repo_name"
+
+            api_url="https://api.github.com/repos/$owner/$repo_name/contents/metadata.json"
+
+            content=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "$api_url")
+
+            if echo "$content" | jq -e '.content' >/dev/null 2>&1; then
+              echo "$content" | jq -r '.content' | base64 --decode > "$output"
+              echo "Saved $output"
+            else
+              echo "metadata.json not found for $repo_name"
+            fi
+
+            index=$((index+1))
           done < repo-list.txt
-          
-          echo "Listing repos directory:"
-          ls -l ../repos/
+
+          echo "Downloaded metadata files:"
+          ls -l ../summary-metadata/
 
       - name: Generate summary.md
         shell: bash
         run: |
-          echo "Listing repos metadata.json:"
-          ls -l ../repos/*/metadata.json
-
           echo "# Security Research Summary" > summary.md
           echo "Unified Index of CVEs and Security Findings" >> summary.md
           echo "Maintained by: **gregk4sec** (https://github.com/gregk4sec/cve)" >> summary.md
@@ -60,35 +76,53 @@ jobs:
           echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
 
           index=1
-          for dir in ../repos/*; do
-            echo "repo dir:$dir"
-            if [ -f "$dir/metadata.json" ]; then
-              meta="$dir/metadata.json"
-              echo "$meta content:"
-              cat "$meta"
-              echo "$meta EOF"
-              type=$(jq -r '.type // "CVE"' "$meta")
-              id=$(jq -r '.id // .case_id // "N/A"' "$meta")
-              title=$(jq -r '.title' "$meta")
-              vendor=$(jq -r '.vendor' "$meta")
-              product=$(jq -r '.product' "$meta")
-              severity=$(jq -r '.severity' "$meta")
-              status=$(jq -r '.status' "$meta")
-              year=$(jq -r '(.id | split("-")[0]) // .year // "N/A"' "$meta")
-              repo_url=$(jq -r '.repository // "Private"' "$meta")
+          for meta in metadata/*.json; do
+            echo "$meta content:"
+            cat "$meta"
+            echo "$meta EOF"
+            type=$(jq -r '.type // "CVE"' "$meta")
+            id=$(jq -r '.id // .case_id // "N/A"' "$meta")
+            title=$(jq -r '.title' "$meta")
+            vendor=$(jq -r '.vendor' "$meta")
+            product=$(jq -r '.product' "$meta")
+            severity=$(jq -r '.severity' "$meta")
+            status=$(jq -r '.status' "$meta")
+            year=$(jq -r '(.id | split("-")[1]) // .year // "N/A"' "$meta")
+            repo_url=$(jq -r '.repository // "Private"' "$meta")
 
-              printf -v hex "0x%02X" $index
+            printf -v hex "0x%02X" $index
 
-              echo "| $hex | $type | $id | $title | $severity | $vendor | $year | $status | $repo_url |" >> summary.md
+            echo "| $hex | $type | $id | $title | $severity | $vendor | $year | $status | $repo_url |" >> summary.md
 
-              index=$((index+1))
-            fi
+            index=$((index+1))
           done
+
+      - name: Generate README.md from README_SOURCE.md + summary.md
+        shell: bash
+        run: |
+          echo "Generating README.md..."
+
+          summary_content=$(cat summary.md)
+
+          awk -v summary="$summary_content" '
+            /<!-- SUMMARY-START -->/ {
+              print;
+              print summary;
+              skip=1;
+              next
+            }
+            /<!-- SUMMARY-END -->/ {
+              skip=0
+            }
+            skip==0
+          ' README_SOURCE.md > README.md
+
+          echo "README.md generated."
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add summary.md
-          git commit -m "Auto-update summary.md" || echo "No changes"
+          git add summary.md README.md
+          git commit -m "Auto-update summary.md and README.md" || echo "No changes"
           git push
