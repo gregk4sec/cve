@@ -2,7 +2,7 @@
     "type": "finding",
     "case_id": "MSRC-102516",
     "year": "2025",
-    "title": "<Mirror of CVE-2026-21962> Incorrect Path Handling Enabling Path Traversal, Unauthorized Access to on-prem apps (SSO bypass → creds theft / data exfiltration / EoP / RCE)",
+    "title": "**Mirror of CVE-2026-21962** Incorrect Path Handling Enabling Path Traversal, Unauthorized Access to on-prem apps (SSO bypass → creds theft / data exfiltration / EoP / RCE)",
     "vendor": "Microsoft",
     "product": "Azure Application Proxy",
     "severity": "Low",

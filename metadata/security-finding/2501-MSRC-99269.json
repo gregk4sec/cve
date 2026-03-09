@@ -2,7 +2,7 @@
     "type": "finding",
     "case_id": "MSRC-99269",
     "year": "2025",
-    "title": "<Mirror of CVE-2026-21962> Remote attacker could RCE / Access Unexposed Internal Servlet App Due to inconsistent URI path normalization behavior between IIS and proxied backend Servlet Container",
+    "title": "**Mirror of CVE-2026-21962** Remote attacker could RCE / Access Unexposed Internal Servlet App Due to inconsistent URI path normalization behavior between IIS and proxied backend Servlet Container",
     "vendor": "Microsoft",
     "product": "IIS",
     "severity": "Low",
