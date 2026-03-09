@@ -29,9 +29,6 @@ jobs:
 
       - name: Clone all linked repos
         run: |
-          echo "repo-list.txt content:"
-          cat .github/workflows/repo-list.txt
-          echo "repo-list.txt EOF"
           mkdir repos
           while read repo; do
             git clone "$repo" "repos/$(basename $repo)" || true
@@ -52,6 +49,7 @@ jobs:
 
           index=1
           for dir in repos/*; do
+            echo "repo dir:$dir"
             if [ -f "$dir/metadata.json" ]; then
               meta="$dir/metadata.json"
               echo "$meta content:"
