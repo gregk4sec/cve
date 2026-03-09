@@ -28,6 +28,7 @@ jobs:
         run: sudo apt-get install -y jq
 
       - name: Clone all linked repos
+        shell: bash
         run: |
           echo "Listing current directory:$(pwd)"
           ls -l .
@@ -36,12 +37,13 @@ jobs:
           while read repo; do
             echo "Cloning $repo into ..."
             git clone "$repo" "../repos/$(basename $repo)" || true
-          done < ./repo-list.txt
+          done < repo-list.txt
           
           echo "Listing repos directory:"
           ls -l ../repos/
 
       - name: Generate summary.md
+        shell: bash
         run: |
           echo "Listing repos metadata.json:"
           ls -l ../repos/*/metadata.json
