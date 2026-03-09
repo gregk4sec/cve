@@ -45,7 +45,7 @@ jobs:
             echo "[$prefix] Fetching metadata.json from $owner/$repo_name"
 
             api_url="https://api.github.com/repos/$owner/$repo_name/contents/metadata.json"
-
+            echo "Download target api_url: $api_url"
             content=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "$api_url")
 
             if echo "$content" | jq -e '.content' >/dev/null 2>&1; then
@@ -76,7 +76,7 @@ jobs:
           echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
 
           index=1
-          for meta in metadata/*.json; do
+          for meta in ../summary-metadata/*.json; do
             echo "$meta content:"
             cat "$meta"
             echo "$meta EOF"
