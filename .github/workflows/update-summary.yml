@@ -33,7 +33,7 @@ jobs:
           while read repo; do
             echo "Cloning $repo into ..."
             git clone "$repo" "repos/$(basename $repo)" || true
-          done < .github/workflows/repo-list.txt
+          done < ./repo-list.txt
           
           echo "Listing repos directory:"
           ls -l repos/
