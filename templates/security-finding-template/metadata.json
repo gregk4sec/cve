@@ -2,6 +2,7 @@
     "type": "security-finding",
     "vendor": "<Vendor>",
     "case_id": "<Case ID>",
+    "year": "2026",
     "title": "<Short Title>",
     "product": "<Product>",
     "severity": "High",

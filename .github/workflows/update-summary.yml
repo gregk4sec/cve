@@ -35,7 +35,7 @@ jobs:
 
           mkdir ../repos
           while read repo; do
-            echo "Cloning $repo into ..."
+            echo "Cloning $repo into ../repos/$(basename $repo)"
             git clone "$repo" "../repos/$(basename $repo)" || true
           done < repo-list.txt
           
@@ -68,13 +68,13 @@ jobs:
               cat "$meta"
               echo "$meta EOF"
               type=$(jq -r '.type // "CVE"' "$meta")
-              id=$(jq -r '.cve // .case_id // "N/A"' "$meta")
+              id=$(jq -r '.id // .case_id // "N/A"' "$meta")
               title=$(jq -r '.title' "$meta")
               vendor=$(jq -r '.vendor' "$meta")
               product=$(jq -r '.product' "$meta")
               severity=$(jq -r '.severity' "$meta")
               status=$(jq -r '.status' "$meta")
-              year=$(jq -r '.cve | split("-")[1] // "N/A"' "$meta")
+              year=$(jq -r '(.id | split("-")[0]) // .year // "N/A"' "$meta")
               repo_url=$(jq -r '.repository // "Private"' "$meta")
 
               printf -v hex "0x%02X" $index
