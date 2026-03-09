@@ -6,7 +6,6 @@ on:
     branches:
       - main
     paths:
-      - '**/metadata.json'
       - '.github/workflows/update-summary.yml'
       - 'README_SOURCE.md'
 
@@ -18,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      contents: read
       contents: write
       actions: read
 
@@ -31,7 +31,8 @@ jobs:
       - name: Fetch metadata.json from each repo (private supported)
         shell: bash
         run: |
-          mkdir -p ../summary-metadata
+          rm -rf summary-metadata-tmp
+          mkdir -p summary-metadata-tmp
 
           index=1
 
@@ -40,13 +41,9 @@ jobs:
             owner=$(echo "$repo" | cut -d'/' -f4)
 
             printf -v prefix "%04d" "$index"
-            output="metadata/${prefix}-${repo_name}.json"
-
-            echo "[$prefix] Fetching metadata.json from $owner/$repo_name"
-
+            output="summary-metadata-tmp/${prefix}-${repo_name}.json"
             api_url="https://api.github.com/repos/$owner/$repo_name/contents/metadata.json"
-            
-            echo "Download target api_url: $api_url"
+            echo "[$prefix] Fetching metadata.json from ${api_url} ..."
 
             content=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "$api_url")
 
@@ -61,7 +58,7 @@ jobs:
           done < repo-list.txt
 
           echo "Downloaded metadata files:"
-          ls -l ../summary-metadata/
+          ls -l summary-metadata-tmp/
 
       - name: Generate summary.md
         shell: bash
@@ -78,10 +75,7 @@ jobs:
           echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
 
           index=1
-          for meta in ../summary-metadata/*.json; do
-            echo "$meta content:"
-            cat "$meta"
-            echo "$meta EOF"
+          for meta in summary-metadata-tmp/*.json; do
             type=$(jq -r '.type // "CVE"' "$meta")
             id=$(jq -r '.id // .case_id // "N/A"' "$meta")
             title=$(jq -r '.title' "$meta")
@@ -123,6 +117,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          rm -rf ./summary-metadata-tmp/
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add summary.md README.md
