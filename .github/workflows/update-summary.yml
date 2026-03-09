@@ -28,34 +28,7 @@ jobs:
       - name: Install jq
         run: sudo apt-get install -y jq
 
-      - name: Fetch metadata.json from each repo (private supported)
-        shell: bash
-        run: |
-          rm -rf tmp
-          mkdir -p tmp/summary-metadata
-          mkdir -p tmp/repos
-          index=1
-
-          while IFS= read -r repo; do
-            repo_name=$(basename "$repo")
-            owner=$(echo "$repo" | cut -d'/' -f4)
-
-            printf -v prefix "%04d" "$index"
-            output="tmp/summary-metadata/${prefix}-${repo_name}.json"
-            
-            echo "Cloning $repo into tmp/repos/$repo_name ..."
-            git clone --depth=1 "$repo" "tmp/repos/$repo_name"
-            echo "Copying mp/repos/$repo_name/metadata.json to tmp/summary-metadata/${prefix}-${repo_name}.json ..."
-            cp "tmp/repos/$repo_name/metadata.json" "tmp/summary-metadata/${prefix}-${repo_name}.json"
-            rm -rf "tmp/repos/$repo_name"
-
-            index=$((index+1))
-          done < repo-list.txt
-
-          rm -rf tmp/repos/
-          echo "Downloaded metadata files:"
-          ls -l tmp/summary-metadata/
-  
+      
       - name: Generate summary.md
         shell: bash
         run: |
@@ -65,29 +38,61 @@ jobs:
           echo "" >> summary.md
           echo "---" >> summary.md
           echo "" >> summary.md
-          echo "## Summary Table" >> summary.md
+          echo "## Cve Summary Table" >> summary.md
           echo "" >> summary.md
           echo "| Index | Type | ID / Case | Title | Severity | Vendor | Year | Status | Repository |" >> summary.md
           echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
 
           index=1
-          for meta in tmp/summary-metadata/*.json; do
-            type=$(jq -r '.type // "CVE"' "$meta")
-            id=$(jq -r '.id // .case_id // "N/A"' "$meta")
-            title=$(jq -r '.title' "$meta")
-            vendor=$(jq -r '.vendor' "$meta")
-            product=$(jq -r '.product' "$meta")
-            severity=$(jq -r '.severity' "$meta")
-            status=$(jq -r '.status' "$meta")
-            year=$(jq -r '(.id | split("-")[1]) // .year // "N/A"' "$meta")
-            repo_url=$(jq -r '.repository // "Private"' "$meta")
 
-            printf -v hex "0x%02X" $index
+          if find metadata/cve -maxdepth 1 -name '*.json' | grep -q .; then
+            for meta in metadata/cve/*.json; do
+              type=$(jq -r '.type // "CVE"' "$meta")
+              id=$(jq -r '.id // .case_id // "N/A"' "$meta")
+              title=$(jq -r '.title' "$meta")
+              vendor=$(jq -r '.vendor' "$meta")
+              product=$(jq -r '.product' "$meta")
+              severity=$(jq -r '.severity' "$meta")
+              status=$(jq -r '.status' "$meta")
+              year=$(jq -r '(.id | split("-")[1]) // .year // "N/A"' "$meta")
+              repo_url=$(jq -r '.repository // "Private"' "$meta")
 
-            echo "| $hex | $type | $id | $title | $severity | $vendor | $year | $status | $repo_url |" >> summary.md
+              printf -v hex "0x%02X" $index
 
-            index=$((index+1))
-          done
+              echo "| $hex | $type | $id | $title | $severity | $vendor | $year | $status | $repo_url |" >> summary.md
+
+              index=$((index+1))
+            done
+          fi
+
+
+          echo "---" >> summary.md
+          echo "" >> summary.md
+          echo "## Security Findings Summary Table" >> summary.md
+          echo "" >> summary.md
+          echo "| Index | Type | ID / Case | Title | Severity | Vendor | Year | Status | Repository |" >> summary.md
+          echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
+
+          index=1
+          if find metadata/security-finding -maxdepth 1 -name '*.json' | grep -q .; then
+            for meta in metadata/security-finding/*.json; do
+              type=$(jq -r '.type // "CVE"' "$meta")
+              id=$(jq -r '.id // .case_id // "N/A"' "$meta")
+              title=$(jq -r '.title' "$meta")
+              vendor=$(jq -r '.vendor' "$meta")
+              product=$(jq -r '.product' "$meta")
+              severity=$(jq -r '.severity' "$meta")
+              status=$(jq -r '.status' "$meta")
+              year=$(jq -r '(.id | split("-")[1]) // .year // "N/A"' "$meta")
+              repo_url=$(jq -r '.repository // "Private"' "$meta")
+
+              printf -v hex "0x%02X" $index
+
+              echo "| $hex | $type | $id | $title | $severity | $vendor | $year | $status | $repo_url |" >> summary.md
+
+              index=$((index+1))
+            done
+          fi
 
       - name: Generate README.md from README_SOURCE.md + summary.md
         shell: bash

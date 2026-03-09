@@ -36,8 +36,8 @@ cd "../$REPO_NAME"
 # Copy template
 if [ "$TYPE" = "cve" ]; then
     cp -R ../cve/templates/cve-template/* .
-# Insert metadata.json
-cat <<EOF > metadata.json
+    # Insert metadata.json
+    cat <<EOF > ./metadata/cve/$REPO_NAME.json
 {
     "type": "$TYPE",
     "id": "CVE-$ID",
@@ -54,12 +54,12 @@ cat <<EOF > metadata.json
 EOF
 else
     cp -R ../cve/templates/security-finding-template/* .
-# Insert metadata.json
-cat <<EOF > metadata.json
+    # Insert metadata.json
+    cat <<EOF > ./metadata/security-finding/$REPO_NAME.json
 {
     "type": "$TYPE",
     "case_id": "$ID",
-    "year": 
+    "year": "",
     "title": "$TITLE",
     "vendor": "",
     "product": "",
