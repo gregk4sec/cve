@@ -2,7 +2,7 @@
     "type": "finding",
     "case_id": "MSRC-102586",
     "year": "2025",
-    "title": "Azure App Service Authentication V2 Path Traversal Bypass Enables MFA Evasion and Privilege Escalation",
+    "title": "<Mirror of CVE-2026-21962> Azure App Service Authentication V2 Path Traversal Bypass Enables MFA Evasion and Privilege Escalation",
     "vendor": "Microsoft",
     "product": "Azure App Service Authentication V2",
     "severity": "High",
