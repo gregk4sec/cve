@@ -29,6 +29,9 @@ jobs:
 
       - name: Clone all linked repos
         run: |
+          echo "Listing current directory:"
+          ls -l .
+          
           mkdir repos
           while read repo; do
             echo "Cloning $repo into ..."
