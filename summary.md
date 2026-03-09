@@ -8,4 +8,4 @@ Maintained by: **gregk4sec** (https://github.com/gregk4sec/cve)
 
 | Index | Type | ID / Case | Title | Severity | Vendor | Year | Status | Repository |
 |-------|------|-----------|--------|----------|--------|-------|---------|------------|
-| 0x01 | cve | 2026-21962 | Oracle OHS Path Traversal | Critical | Oracle | 2026 | Public | https://github.com/gregk4sec/cve-2026-21962 |
+| 0x01 | cve | CVE-2026-21962 | Oracle OHS Path Traversal | Critical | Oracle | 2026 | Public | https://github.com/gregk4sec/cve-2026-21962 |
