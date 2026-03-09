@@ -1,1 +1,4 @@
+https://github.com/gregk4sec/cve-2025-31651
 https://github.com/gregk4sec/cve-2026-21962
+https://github.com/gregk4sec/cve-2026-25854
+https://github.com/gregk4sec/cve-2026-29145
