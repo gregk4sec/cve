@@ -30,9 +30,9 @@ jobs:
       - name: Fetch metadata.json from each repo (private supported)
         shell: bash
         run: |
-          rm -rf summary-metadata-tmp
-          mkdir -p summary-metadata-tmp
-
+          rm -rf tmp
+          mkdir -p tmp/summary-metadata
+          mkdir -p tmp/repos
           index=1
 
           while IFS= read -r repo; do
@@ -40,25 +40,21 @@ jobs:
             owner=$(echo "$repo" | cut -d'/' -f4)
 
             printf -v prefix "%04d" "$index"
-            output="summary-metadata-tmp/${prefix}-${repo_name}.json"
-            api_url="https://api.github.com/repos/$owner/$repo_name/contents/metadata.json"
-            echo "[$prefix] Fetching metadata.json from ${api_url} ..."
-
-            content=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "$api_url")
-
-            if echo "$content" | jq -e '.content' >/dev/null 2>&1; then
-              echo "$content" | jq -r '.content' | base64 --decode > "$output"
-              echo "Saved $output"
-            else
-              echo "metadata.json not found for $repo_name, content: $content"
-            fi
+            output="tmp/summary-metadata/${prefix}-${repo_name}.json"
+            
+            echo "Cloning $repo into tmp/repos/$repo_name ..."
+            git clone --depth=1 "$repo" "tmp/repos/$repo_name"
+            echo "Copying mp/repos/$repo_name/metadata.json to tmp/summary-metadata/${prefix}-${repo_name}.json ..."
+            cp "tmp/repos/$repo_name/metadata.json" "tmp/summary-metadata/${prefix}-${repo_name}.json"
+            rm -rf "tmp/repos/$repo_name"
 
             index=$((index+1))
           done < repo-list.txt
 
+          rm -rf tmp/repos/
           echo "Downloaded metadata files:"
-          ls -l summary-metadata-tmp/
-
+          ls -l tmp/summary-metadata/
+  
       - name: Generate summary.md
         shell: bash
         run: |
@@ -74,7 +70,7 @@ jobs:
           echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
 
           index=1
-          for meta in summary-metadata-tmp/*.json; do
+          for meta in tmp/summary-metadata/*.json; do
             type=$(jq -r '.type // "CVE"' "$meta")
             id=$(jq -r '.id // .case_id // "N/A"' "$meta")
             title=$(jq -r '.title' "$meta")
@@ -116,7 +112,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          rm -rf ./summary-metadata-tmp/
+          rm -rf ./tmp/
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add summary.md README.md
