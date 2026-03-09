@@ -64,9 +64,9 @@ It serves as the **official archive** for:
 
 ---
 
-# CVE Archive
+# Published CVEs
 
-This repository contains all CVE writeups.
+This repository contains all of my CVEs and Security Findings.
 
 <!-- SUMMARY-START -->
 <!-- SUMMARY-END -->
