@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir repos
           while read repo; do
+            echo "Cloning $repo into ..."
             git clone "$repo" "repos/$(basename $repo)" || true
           done < .github/workflows/repo-list.txt
           
@@ -41,7 +42,7 @@ jobs:
         run: |
           echo "Listing repos metadata.json:"
           ls -l repos/*/metadata.json
-          
+
           echo "# Security Research Summary" > summary.md
           echo "Unified Index of CVEs and Security Findings" >> summary.md
           echo "Maintained by: **gregk4sec** (https://github.com/gregk4sec/cve)" >> summary.md
