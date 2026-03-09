@@ -6,7 +6,7 @@
     "vendor": "Microsoft",
     "product": "Azure Application Proxy",
     "severity": "Low",
-    "status": "",
+    "status": "Private & Confirmed",
     "discoverer": "gregk4sec (https://github.com/gregk4sec/cve)",
     "discovery_date": "2025-10-13",
     "public_date": "",

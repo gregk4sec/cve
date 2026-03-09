@@ -6,7 +6,7 @@
     "vendor": "Microsoft",
     "product": "Azure App Service",
     "severity": "Critical",
-    "status": "Rejected / Public",
+    "status": "Public & Rejected",
     "discoverer": "gregk4sec (https://github.com/gregk4sec/cve)",
     "discovery_date": "2025-10-06",
     "public_date": "",
