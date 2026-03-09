@@ -29,22 +29,22 @@ jobs:
 
       - name: Clone all linked repos
         run: |
-          echo "Listing current directory:"
+          echo "Listing current directory:$(pwd)"
           ls -l .
-          
-          mkdir repos
+
+          mkdir ../repos
           while read repo; do
             echo "Cloning $repo into ..."
-            git clone "$repo" "repos/$(basename $repo)" || true
+            git clone "$repo" "../repos/$(basename $repo)" || true
           done < ./repo-list.txt
           
           echo "Listing repos directory:"
-          ls -l repos/
+          ls -l ../repos/
 
       - name: Generate summary.md
         run: |
           echo "Listing repos metadata.json:"
-          ls -l repos/*/metadata.json
+          ls -l ../repos/*/metadata.json
 
           echo "# Security Research Summary" > summary.md
           echo "Unified Index of CVEs and Security Findings" >> summary.md
@@ -58,7 +58,7 @@ jobs:
           echo "|-------|------|-----------|--------|----------|--------|-------|---------|------------|" >> summary.md
 
           index=1
-          for dir in repos/*; do
+          for dir in ../repos/*; do
             echo "repo dir:$dir"
             if [ -f "$dir/metadata.json" ]; then
               meta="$dir/metadata.json"
