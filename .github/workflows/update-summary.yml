@@ -76,13 +76,13 @@ jobs:
           if find metadata/security-finding -maxdepth 1 -name '*.json' | grep -q .; then
             for meta in metadata/security-finding/*.json; do
               type=$(jq -r '.type // "CVE"' "$meta")
-              id=$(jq -r '.id // .case_id // "N/A"' "$meta")
+              id=$(jq -r '.case_id // "N/A"' "$meta")
               title=$(jq -r '.title' "$meta")
               vendor=$(jq -r '.vendor' "$meta")
               product=$(jq -r '.product' "$meta")
               severity=$(jq -r '.severity' "$meta")
               status=$(jq -r '.status' "$meta")
-              year=$(jq -r '(.id | split("-")[1]) // .year // "N/A"' "$meta")
+              year=$(jq -r '.year // "N/A"' "$meta")
               repo_url=$(jq -r '.repository // "Private"' "$meta")
 
               printf -v hex "0x%02X" $index

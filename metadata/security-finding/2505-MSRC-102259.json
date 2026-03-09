@@ -1,6 +1,7 @@
 {
     "type": "finding",
     "case_id": "MSRC-102259",
+    "year": "2025",
     "title": "Symbolic Link Dereference in App Service Mounted Storage Leading to Full Azure App Service Infrastructure Takeover",
     "vendor": "Microsoft",
     "product": "Azure App Service",

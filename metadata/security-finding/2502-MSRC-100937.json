@@ -1,6 +1,7 @@
 {
     "type": "finding",
     "case_id": "MSRC-100937",
+    "year": "2025",
     "title": "<Mirror of CVE-2026-21962> Path based routing rule in Azure Application Gateway allows HTTP Path Traversal / Equivalence attack",
     "vendor": "Microsoft",
     "product": "Azure Application Gateway",
