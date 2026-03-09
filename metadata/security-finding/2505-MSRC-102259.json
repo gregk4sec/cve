@@ -1,0 +1,13 @@
+{
+    "type": "finding",
+    "case_id": "MSRC-102259",
+    "title": "Symbolic Link Dereference in App Service Mounted Storage Leading to Full Azure App Service Infrastructure Takeover",
+    "vendor": "Microsoft",
+    "product": "Azure App Service",
+    "severity": "Critical",
+    "status": "Public",
+    "discoverer": "gregk4sec (https://github.com/gregk4sec/cve)",
+    "discovery_date": "2025-10-06",
+    "public_date": "",
+    "repository": "https://github.com/gregk4sec/msrc-102259"
+}

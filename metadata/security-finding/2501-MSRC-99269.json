@@ -1,0 +1,13 @@
+{
+    "type": "finding",
+    "case_id": "MSRC-99269",
+    "title": "Remote attacker could RCE / Access Unexposed Internal Servlet App Due to inconsistent URI path normalization behavior between IIS and proxied backend Servlet Container",
+    "vendor": "Microsoft",
+    "product": "IIS",
+    "severity": "",
+    "status": "Public",
+    "discoverer": "gregk4sec (https://github.com/gregk4sec/cve)",
+    "discovery_date": "2025-06-05",
+    "public_date": "",
+    "repository": "https://github.com/gregk4sec/msrc-99269"
+}

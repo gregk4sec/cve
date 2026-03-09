@@ -1,0 +1,13 @@
+{
+    "type": "finding",
+    "case_id": "MSRC-102586",
+    "title": "Azure App Service Authentication V2 Path Traversal Bypass Enables MFA Evasion and Privilege Escalation",
+    "vendor": "Microsoft",
+    "product": "Azure App Service Authentication V2",
+    "severity": "High",
+    "status": "Private",
+    "discoverer": "gregk4sec (https://github.com/gregk4sec/cve)",
+    "discovery_date": "2025-10-15",
+    "public_date": "",
+    "repository": "https://github.com/gregk4sec/msrc-102586"
+}
